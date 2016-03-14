@@ -10,7 +10,7 @@ def dfs(g, v):
             #do relevant function call here
             #add to stack vertexes in visited node
             stack.extend(set(g[vertex]).difference(visited))
-    return visited
+    return {v : list(visited)}
 
 
 def bfs(g, v):
