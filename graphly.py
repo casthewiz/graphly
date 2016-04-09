@@ -28,3 +28,15 @@ class graph:
     def output(self):
         for i in self.bucket:
             i.output()
+
+    def generate(self):
+
+        return 0
+
+    def fExport(self):
+        for i in self.bucket:
+            open()
+        return 0
+
+    def fImport(self, fname):
+        return 0
