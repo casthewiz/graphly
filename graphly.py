@@ -46,11 +46,21 @@ class graph:
             g.append(sub)
         newGraph = graph(g)
         self.bucket = newGraph.bucket
+        self.size = newGraph.size
+        return 0
+
+
+    def inverse(self):
+        g = set()
+        for i in range(0, self.size):
+            g.add(i)
+        for i in range(0, self.size):
+            compare = set(self.bucket[i].children)
+            inverse = g - compare
+            self.bucket[i].children = inverse
         return 0
 
     def fExport(self):
-        for i in self.bucket:
-            open()
         return 0
 
     def fImport(self, fname):
