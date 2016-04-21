@@ -64,4 +64,13 @@ class graph:
         return 0
 
     def fImport(self, fname):
-        return 0
+        self.bucket = []
+        f = open(fname, 'r')
+        first = f.readline()
+        for i in range (0, int(first)):
+            x = f.readline()
+            x = x.split()
+            print(x)
+            y = [int(j) for j in x]
+            self.bucket.append(node(i, y))
+        self.size = len(self.bucket)
