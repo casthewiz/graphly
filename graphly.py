@@ -63,8 +63,6 @@ class graph:
         return 0
 
     def nextElem(self, i):
-        print("here")
-        print(i)
         if (i):
             tmp = i.pop()
             i.add(tmp)
@@ -73,9 +71,8 @@ class graph:
 
     def bron_kebrosch(self, clique, candidates = set(), excluded = set()):
         if not candidates and not excluded:
-            self.indSet.append(clique)
+            self.indSet.union(set(clique))
         pivot = self.nextElem(candidates) or self.nextElem(excluded)
-        print(pivot)
         for i in list(candidates.difference((self.bucket[pivot].children))):
             self.bron_kebrosch(clique + [i], candidates.intersection(self.bucket[i].children), excluded.intersection(self.bucket[i].children))
             candidates.remove(i)
@@ -93,23 +90,21 @@ class graph:
         while S:
             excluded = S.pop()
             candidates = S.pop()
-            print(candidates)
             clique = S.pop()
             if not candidates and not excluded:
-                self.indSet.union(set(clique))
+                print(clique)
+                self.indSet = set(clique)
                 break
             if candidates:
                 i = self.nextElem(candidates) or self.nextElem(excluded)
-                S.append(clique)
-                print(candidates)
                 candidates.remove(i)
+                S.append(clique)
                 S.append(candidates)
                 S.append(excluded.add(i))
+                #########################
                 S.append(clique + [i])
                 S.append(candidates.intersection(graph[i].children))
                 S.append(excluded.intersection(graph[i].children))
-                print(candidates)
-                print(excluded)
 
     def tree_set(self):
         return 0
