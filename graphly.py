@@ -114,6 +114,7 @@ class graph:
         for i in range (0, int(first)):
             x = f.readline()
             x = x.split()
+            x.pop(0)
             y = {int(j) for j in x}
             self.bucket.append(node(i, y))
         self.size = len(self.bucket)
