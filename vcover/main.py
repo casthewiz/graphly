@@ -19,7 +19,7 @@ z.fImport("sample_1.txt")
 
 while z.isEdgeLeft():
     edge = z.selectRandEdge()
-    z.addEdgeToSolution(edge)
     z.removeEdge(edge)
+    z.addEdgeToSolution(edge)
     
 z.output()

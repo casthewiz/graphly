@@ -92,7 +92,7 @@ class graph:
 
 
     def removePoint(self, point):
-        print("Removing Point: " + str(point))
+        #print("Removing Point: " + str(point))
 
         #DEBUG - uncomment below to see graph before removal
         #print("\nBefore Removal: ")
