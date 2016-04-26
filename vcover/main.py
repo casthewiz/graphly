@@ -9,7 +9,7 @@ x = [[1,2],[0,2],[1,0],[4,1],[2,0]]
 # y.output()
 
 z = graph(x)
-z.fImport("sample_1.txt")
+z.fImport("sample_2.txt")
 
 print("Starting Graph:")
 z.output()
