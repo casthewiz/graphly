@@ -33,6 +33,7 @@ class graph:
             i.output()
 
 
+
     #returns a random existing edge of the form [P1, P2]
     #sample usage: z.randEdge()
     #returns: [61, 22]
@@ -55,6 +56,7 @@ class graph:
         return randE
 
 
+
     #adds an edge to the solution
     #sample usage z.addEdgeToSolution(z.selectRandEdge())
     #indSet becomes: {0, 7}
@@ -70,18 +72,29 @@ class graph:
         return 0
 
 
+
     #adds a point to the solution
     #sample usage z.addPointToSolution(4)
     #indSet becomes: {4} 
     def addPointToSolution(self, point):
+        #adds point to set
         self.indSet.add(point)
+        
         print("Current Solution: " + str(self.indSet))
         return 0
 
+
     def removePoint(self, point):
+        print("Removing Point: " + str(point))
+        print("\nBefore Removal: ")
+        self.output()
+
+        
+        print("\nAfter Removal: ")
+        self.output()
         return 0
-        
-        
+ 
+  
 
     #size determines the number of nodes in a given graph
     #connectivity is the average factor of nodes connected - e.g .10 is a node will connect to 10% of the graph.
