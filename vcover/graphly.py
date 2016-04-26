@@ -32,10 +32,27 @@ class graph:
         for i in self.bucket:
             i.output()
 
-    def randPoint(self):
-        randP = choice(self.bucket)
-        randP.output()
+
+    #returns a random existing edge of the form [P1, P2]
+    #sample usage: z.randEdge()
+    #returns: [61, 22]
+    def randEdge(self):
+        #grab a random point from the bucket, an object
+        randP1 = choice(self.bucket)
         
+        #grab a random child of that point, an int
+        randP2 = choice(tuple(randP1.children))
+        
+        #grab the index of the initial point, an int
+        randP1 = randP1.index
+        
+        #combine into an edge
+        randE = []
+        randE = [randP1, randP2]
+        
+        #DEBUG - uncomment below for a random edge
+        print("Selected Edge: " + str(randE))
+        return randE
         
 
     #size determines the number of nodes in a given graph
