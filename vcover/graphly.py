@@ -54,12 +54,25 @@ class graph:
         print("Selected Edge: " + str(randE))
         return randE
 
+
+    #adds an edge to the solution
+    #sample usage z.addEdgeToSolution(z.selectRandEdge())
+    #indSet becomes: {0, 7}
     def addEdgeToSolution(self, edge):
+        #add first point to set
         self.indSet.add(edge[0])
+
+        #add second point to set
         self.indSet.add(edge[1])
+
+        #DEBUG - uncomment below for the current solution
         print("Current Solution: " + str(self.indSet))
         return 0
-    
+
+
+    #adds a point to the solution
+    #sample usage z.addPointToSolution(4)
+    #indSet becomes: {4} 
     def addPointToSolution(self, point):
         self.indSet.add(point)
         print("Current Solution: " + str(self.indSet))
