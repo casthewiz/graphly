@@ -120,8 +120,9 @@ class graph:
 
     def isEdgeLeft(self):
         for node in self.bucket:
-            if node != None:
-                return True
+            if node:
+                if len(node.children) > 0:
+                    return True
         return False
             
 
