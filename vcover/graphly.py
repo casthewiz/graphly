@@ -32,6 +32,12 @@ class graph:
         for i in self.bucket:
             i.output()
 
+    def randPoint(self):
+        randP = choice(self.bucket)
+        randP.output()
+        
+        
+
     #size determines the number of nodes in a given graph
     #connectivity is the average factor of nodes connected - e.g .10 is a node will connect to 10% of the graph.
     #variation is the degree of entropy for connections - e.g. .50 means that the connectivity for a given node will vary within 50% of it's given value
