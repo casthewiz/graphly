@@ -92,7 +92,6 @@ class graph:
             candidates = S.pop()
             clique = S.pop()
             if not candidates and not excluded:
-                print(clique)
                 self.indSet = set(clique)
                 break
             if candidates:

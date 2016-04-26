@@ -47,17 +47,17 @@ class graph:
 
         #grab a random point from the bucket, an object
         randP1 = choice(bucket2)
-        
+
         #grab a random child of that point, an int
         randP2 = choice(tuple(randP1.children))
-        
+
         #grab the index of the initial point, an int
         randP1 = randP1.index
-        
+
         #combine into an edge
         randE = []
         randE = [randP1, randP2]
-        
+
         #DEBUG - uncomment below for a random edge
         print("Selected Edge: " + str(randE))
         return randE
@@ -82,11 +82,10 @@ class graph:
 
     #adds a point to the solution
     #sample usage z.addPointToSolution(4)
-    #indSet becomes: {4} 
+    #indSet becomes: {4}
     def addPointToSolution(self, point):
         #adds point to set
         self.indSet.add(point)
-        
         print("Current Inverse Solution: " + str(self.indSet))
         return 0
 
@@ -105,14 +104,14 @@ class graph:
             self.bucket[val].children.remove(point)
 
         self.bucket[point] = None
-        
+
         #DEBUG - uncomment below to see graph after removal
         #print("\nAfter Removal: ")
         #self.output()
-        
+
         print("Removed Point: " + str(point))
         return 0
- 
+
     def removeEdge(self, edge):
         self.removePoint(edge[0])
         self.removePoint(edge[1])
@@ -124,7 +123,7 @@ class graph:
                 if len(node.children) > 0:
                     return True
         return False
-            
+
 
     #size determines the number of nodes in a given graph
     #connectivity is the average factor of nodes connected - e.g .10 is a node will connect to 10% of the graph.

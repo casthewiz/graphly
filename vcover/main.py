@@ -21,5 +21,9 @@ while z.isEdgeLeft():
     edge = z.selectRandEdge()
     z.addEdgeToSolution(edge)
     z.removeEdge(edge)
-    
-z.output()
+g = set()
+for i in range(0, self.size):
+    g.add(i)
+inverse = g - z.indSet
+z.indSet = inverse
+print(z.indSet)
