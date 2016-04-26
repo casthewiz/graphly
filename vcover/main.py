@@ -26,4 +26,6 @@ for i in range(0, z.size):
     g.add(i)
 inverse = g - z.indSet
 z.indSet = inverse
+
+
 print(z.indSet)
