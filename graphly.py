@@ -20,7 +20,7 @@ class graph:
     # bucket is the container for all nodes
     bucket = []
     # indSet is the solution container
-    indSet = {}
+    indSet = set()
     size = 0
 
     # takes in size
@@ -63,43 +63,53 @@ class graph:
         return 0
 
     def nextElem(self, i):
+        print("here")
+        print(i)
         if (i):
             tmp = i.pop()
             i.add(tmp)
-            print(tmp)
+
             return tmp
 
-    # def bron_kebrosch(self, clique, candidates = set(), excluded = set()):
-    #     if not candidates and not excluded:
-    #         self.indSet.append(clique)
-    #     # pivot = self.nextElem(candidates) or self.nextElem(excluded)
-    #     # print(pivot)
-    #     for i in list(candidates):
-    #         self.bron_kebrosch(clique + [i], candidates.intersection(self.bucket[i].children), excluded.intersection(self.bucket[i].children))
-    #         candidates.remove(i)
-    #         excluded.add(i)
+    def bron_kebrosch(self, clique, candidates = set(), excluded = set()):
+        if not candidates and not excluded:
+            self.indSet.append(clique)
+        pivot = self.nextElem(candidates) or self.nextElem(excluded)
+        print(pivot)
+        for i in list(candidates.difference((self.bucket[pivot].children))):
+            self.bron_kebrosch(clique + [i], candidates.intersection(self.bucket[i].children), excluded.intersection(self.bucket[i].children))
+            candidates.remove(i)
+            excluded.add(i)
 
 
     def iter_bron_kebrosch(self):
-        candidates = set(range(1, z.size))
+        candidates = set(range(1, self.size))
         clique = []
         graph = self.bucket
         S = []
-        S.append(set())
+        S.append(list())
         S.append(candidates)
         S.append(set())
         while S:
-            excluded = S.pop
-            candidates = S.pop
-            clique = S.pop
-        if not candidates and not excluded:
-            self.indSet.append(clique)
-        for i in list(candidates):
-            S.append(clique + [i])
-            S.append(candidates.intersection(graph[i].children))
-            S.append(excluded.intersection(graph[i].children))
-            candidates.remove(i)
-            excluded.add(i)
+            excluded = S.pop()
+            candidates = S.pop()
+            print(candidates)
+            clique = S.pop()
+            if not candidates and not excluded:
+                self.indSet.union(set(clique))
+                break
+            if candidates:
+                i = self.nextElem(candidates) or self.nextElem(excluded)
+                S.append(clique)
+                print(candidates)
+                candidates.remove(i)
+                S.append(candidates)
+                S.append(excluded.add(i))
+                S.append(clique + [i])
+                S.append(candidates.intersection(graph[i].children))
+                S.append(excluded.intersection(graph[i].children))
+                print(candidates)
+                print(excluded)
 
     def tree_set(self):
         return 0
@@ -114,6 +124,7 @@ class graph:
         for i in range (0, int(first)):
             x = f.readline()
             x = x.split()
+            x.pop(0)
             y = {int(j) for j in x}
             self.bucket.append(node(i, y))
         self.size = len(self.bucket)

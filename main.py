@@ -12,7 +12,8 @@ z = graph(x)
 z.fImport("sample_1.txt")
 z.inverse()
 # z.output()
-# 
-#
-# z.iter_bron_kebrosch()
-# print(z.indSet)
+
+
+# z.bron_kebrosch(clique = list(), candidates = set(range(1, z.size)))
+z.iter_bron_kebrosch()
+print(z.indSet)
