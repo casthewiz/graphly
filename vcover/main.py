@@ -22,7 +22,7 @@ while z.isEdgeLeft():
 print("\nEnding Graph:")
 print("No Remaining Connections")
 g = set()
-for i in range(0, self.size):
+for i in range(0, z.size):
     g.add(i)
 inverse = g - z.indSet
 z.indSet = inverse
