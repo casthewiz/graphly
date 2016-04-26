@@ -59,7 +59,7 @@ class graph:
         randE = [randP1, randP2]
 
         #DEBUG - uncomment below for a random edge
-        print("Selected Edge: " + str(randE))
+        #print("Selected Edge: " + str(randE))
         return randE
 
 
@@ -75,7 +75,7 @@ class graph:
         self.indSet.add(edge[1])
 
         #DEBUG - uncomment below for the current solution
-        print("Current Inverse Solution: " + str(self.indSet))
+        #print("Current Inverse Solution: " + str(self.indSet))
         return 0
 
 
@@ -86,7 +86,7 @@ class graph:
     def addPointToSolution(self, point):
         #adds point to set
         self.indSet.add(point)
-        print("Current Inverse Solution: " + str(self.indSet))
+        #print("Current Inverse Solution: " + str(self.indSet))
         return 0
 
 
@@ -109,7 +109,7 @@ class graph:
         #print("\nAfter Removal: ")
         #self.output()
 
-        print("Removed Point: " + str(point))
+        #print("Removed Point: " + str(point))
         return 0
 
     def removeEdge(self, edge):
