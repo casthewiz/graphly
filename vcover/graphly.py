@@ -87,8 +87,10 @@ class graph:
 
     def removePoint(self, point):
         print("Removing Point: " + str(point))
-        print("\nBefore Removal: ")
-        self.output()
+
+        #DEBUG - uncomment below to see graph before removal
+        #print("\nBefore Removal: ")
+        #self.output()
 
         #for each value that is in the points set...
         #visit that point node and remove the child which
@@ -98,8 +100,11 @@ class graph:
 
         self.bucket[point] = None
         
-        print("\nAfter Removal: ")
-        self.output()
+        #DEBUG - uncomment below to see graph after removal
+        #print("\nAfter Removal: ")
+        #self.output()
+        
+        print("Removed Point: " + str(point))
         return 0
  
   
