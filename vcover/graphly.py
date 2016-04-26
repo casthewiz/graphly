@@ -39,8 +39,14 @@ class graph:
     #sample usage: z.randEdge()
     #returns: [61, 22]
     def selectRandEdge(self):
+        bucket2 = []
+        for val in self.bucket:
+            if val:
+                if len(val.children) > 0:
+                    bucket2.append(val)
+
         #grab a random point from the bucket, an object
-        randP1 = choice(self.bucket)
+        randP1 = choice(bucket2)
         
         #grab a random child of that point, an int
         randP2 = choice(tuple(randP1.children))
@@ -69,7 +75,7 @@ class graph:
         self.indSet.add(edge[1])
 
         #DEBUG - uncomment below for the current solution
-        print("Current Solution: " + str(self.indSet))
+        print("Current Inverse Solution: " + str(self.indSet))
         return 0
 
 
@@ -81,7 +87,7 @@ class graph:
         #adds point to set
         self.indSet.add(point)
         
-        print("Current Solution: " + str(self.indSet))
+        print("Current Inverse Solution: " + str(self.indSet))
         return 0
 
 
@@ -107,7 +113,17 @@ class graph:
         print("Removed Point: " + str(point))
         return 0
  
-  
+    def removeEdge(self, edge):
+        self.removePoint(edge[0])
+        self.removePoint(edge[1])
+        return 0
+
+    def isEdgeLeft(self):
+        for node in self.bucket:
+            if node != None:
+                return True
+        return False
+            
 
     #size determines the number of nodes in a given graph
     #connectivity is the average factor of nodes connected - e.g .10 is a node will connect to 10% of the graph.

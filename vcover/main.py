@@ -10,11 +10,16 @@ x = [[1,2],[0,2],[1,0],[4,1],[2,0]]
 
 z = graph(x)
 z.fImport("sample_1.txt")
-#z.inverse()
 #z.output()
-# 
-#
-# z.iter_bron_kebrosch()
-# print(z.indSet)
-z.addEdgeToSolution(z.selectRandEdge())
-z.removePoint(1)
+#edge = z.selectRandEdge()
+#z.addEdgeToSolution(edge)
+#z.removeEdge(edge)
+#z.output()
+#print(str(z.isEdgeLeft()))
+
+while z.isEdgeLeft():
+    edge = z.selectRandEdge()
+    z.addEdgeToSolution(edge)
+    z.removeEdge(edge)
+    
+z.output()
