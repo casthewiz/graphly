@@ -2,14 +2,14 @@ from random import *
 
 class node:
     index = -1
-    children = []
+    children = {}
 
     def __init__(self, index, children):
         self.index = index
         self.children = children
 
     def set(self, child):
-        self.children.append(child)
+        self.children.add(child)
 
     def output(self):
         print(str(self.index) + " " + str(self.children))
@@ -19,6 +19,8 @@ class node:
 class graph:
     # bucket is the container for all nodes
     bucket = []
+    # indSet is the solution container
+    indSet = {}
     size = 0
 
     # takes in size
@@ -37,12 +39,12 @@ class graph:
     def generate(self, size = 10, connectivity=.10, variation=.50):
         g = list()
         for i in range(0, size):
-            sub = []
+            sub = {}
             connectionFlux = (variation * connectivity)
             connectionFactor = round(uniform(0 - connectionFlux, connectionFlux), 2) + connectivity
             connectionNumber = size * connectivity
             for j in range(0, int(connectionNumber)):
-                sub.append(randrange(0, size))
+                sub.add(randrange(0, size))
             g.append(sub)
         newGraph = graph(g)
         self.bucket = newGraph.bucket
@@ -60,10 +62,46 @@ class graph:
             self.bucket[i].children = inverse
         return 0
 
-    def bron-kebrosch(self, clique, candidates, excluded):
-        return 0
+    def nextElem(self, i):
+        if (i):
+            tmp = i.pop()
+            i.add(tmp)
+            print(tmp)
+            return tmp
 
-    def tree-set(self):
+    # def bron_kebrosch(self, clique, candidates = set(), excluded = set()):
+    #     if not candidates and not excluded:
+    #         self.indSet.append(clique)
+    #     # pivot = self.nextElem(candidates) or self.nextElem(excluded)
+    #     # print(pivot)
+    #     for i in list(candidates):
+    #         self.bron_kebrosch(clique + [i], candidates.intersection(self.bucket[i].children), excluded.intersection(self.bucket[i].children))
+    #         candidates.remove(i)
+    #         excluded.add(i)
+
+
+    def iter_bron_kebrosch(self):
+        candidates = set(range(1, z.size))
+        clique = []
+        graph = self.bucket
+        S = []
+        S.append(set())
+        S.append(candidates)
+        S.append(set())
+        while S:
+            excluded = S.pop
+            candidates = S.pop
+            clique = S.pop
+        if not candidates and not excluded:
+            self.indSet.append(clique)
+        for i in list(candidates):
+            S.append(clique + [i])
+            S.append(candidates.intersection(graph[i].children))
+            S.append(excluded.intersection(graph[i].children))
+            candidates.remove(i)
+            excluded.add(i)
+
+    def tree_set(self):
         return 0
 
     def fExport(self):
@@ -76,6 +114,6 @@ class graph:
         for i in range (0, int(first)):
             x = f.readline()
             x = x.split()
-            y = [int(j) for j in x]
+            y = {int(j) for j in x}
             self.bucket.append(node(i, y))
         self.size = len(self.bucket)
