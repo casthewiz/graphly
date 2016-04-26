@@ -11,17 +11,17 @@ x = [[1,2],[0,2],[1,0],[4,1],[2,0]]
 z = graph(x)
 z.fImport("sample_2.txt")
 
-print("Starting Graph:")
-z.output()
+#print("Starting Graph:")
+#z.output()
 
-print("\nProcess:")
+#print("\nProcess:")
 while z.isEdgeLeft():
     edge = z.selectRandEdge()
     z.removeEdge(edge)
     z.addEdgeToSolution(edge)
-print("\nEnding Graph:")
-print("No Remaining Connections")
-z.output()
+#print("\nEnding Graph:")
+#print("No Remaining Connections")
+#z.output()
 
 g = set()
 for i in range(0, z.size):
