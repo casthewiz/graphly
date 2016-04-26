@@ -21,9 +21,12 @@ while z.isEdgeLeft():
     z.addEdgeToSolution(edge)
 print("\nEnding Graph:")
 print("No Remaining Connections")
+z.output()
+
 g = set()
 for i in range(0, z.size):
     g.add(i)
 inverse = g - z.indSet
 z.indSet = inverse
+print("\nSolution:")
 print(z.indSet)
