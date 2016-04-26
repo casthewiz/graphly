@@ -20,7 +20,7 @@ class graph:
     # bucket is the container for all nodes
     bucket = []
     # indSet is the solution container
-    indSet = {}
+    indSet = set()
     size = 0
 
     # takes in size
@@ -36,7 +36,7 @@ class graph:
     #returns a random existing edge of the form [P1, P2]
     #sample usage: z.randEdge()
     #returns: [61, 22]
-    def randEdge(self):
+    def selectRandEdge(self):
         #grab a random point from the bucket, an object
         randP1 = choice(self.bucket)
         
@@ -53,6 +53,21 @@ class graph:
         #DEBUG - uncomment below for a random edge
         print("Selected Edge: " + str(randE))
         return randE
+
+    def addEdgeToSolution(self, edge):
+        self.indSet.add(edge[0])
+        self.indSet.add(edge[1])
+        print("Current Solution: " + str(self.indSet))
+        return 0
+    
+    def addPointToSolution(self, point):
+        self.indSet.add(point)
+        print("Current Solution: " + str(self.indSet))
+        return 0
+
+    def removePoint(self, point):
+        return 0
+        
         
 
     #size determines the number of nodes in a given graph

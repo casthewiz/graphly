@@ -16,4 +16,4 @@ z.output()
 #
 # z.iter_bron_kebrosch()
 # print(z.indSet)
-z.randEdge()
+z.addEdgeToSolution(z.selectRandEdge())
