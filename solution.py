@@ -9,9 +9,3 @@ def findSet():
     x.solution()
     return 0
 findSet()
-print("Press 'n' if finished.")
-
-while input() is not 'n':
-    x.cmdImport()
-    findSet()
-    print("Press 'n' if finished.")

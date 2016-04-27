@@ -33,7 +33,6 @@ class graph:
             i.output()
 
     def indSetOutput(self):
-        print("Independent Set:")
         print(" ".join(str(i) for i in self.indSet))
 
     def solution(self):
