@@ -219,6 +219,7 @@ class graph:
     def cmdImport(self):
         self.bucket = []
         print("Starting command line input mode - input is line by line, per line.")
+        print("Awaiting standard input.")
         first = input()
         for i in range (0, int(first)):
             x = input()
