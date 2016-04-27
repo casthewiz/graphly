@@ -24,7 +24,7 @@ class graph:
     size = 0
 
     # takes in size
-    def __init__(self, qArray):
+    def __init__(self, qArray = list()):
         self.bucket = [node(ind, i) for ind, i in enumerate(qArray)]
         self.size = len(self.bucket)
 
@@ -32,6 +32,111 @@ class graph:
         for i in self.bucket:
             i.output()
 
+    def indSetOutput(self):
+        print(" ".join(str(i) for i in self.indSet))
+
+    def solution(self):
+        while self.isEdgeLeft():
+            edge = self.selectRandEdge()
+            self.removeEdge(edge)
+            self.addEdgeToSolution(edge)
+        g = set()
+        for i in range(0, self.size):
+            g.add(i)
+        inverse = g - self.indSet
+        self.indSet = inverse
+        self.indSetOutput()
+        return 0
+
+
+    #returns a random existing edge of the form [P1, P2]
+    #sample usage: z.randEdge()
+    #returns: [61, 22]
+    def selectRandEdge(self):
+        bucket2 = []
+        for val in self.bucket:
+            if val:
+                if len(val.children) > 0:
+                    bucket2.append(val)
+
+        #grab a random point from the bucket, an object
+        randP1 = choice(bucket2)
+
+        #grab a random child of that point, an int
+        randP2 = choice(tuple(randP1.children))
+
+        #grab the index of the initial point, an int
+        randP1 = randP1.index
+
+        #combine into an edge
+        randE = []
+        randE = [randP1, randP2]
+
+        #DEBUG - uncomment below for a random edge
+        #print("Selected Edge: " + str(randE))
+        return randE
+
+
+
+    #adds an edge to the solution
+    #sample usage z.addEdgeToSolution(z.selectRandEdge())
+    #indSet becomes: {0, 7}
+    def addEdgeToSolution(self, edge):
+        #add first point to set
+        self.indSet.add(edge[0])
+
+        #add second point to set
+        self.indSet.add(edge[1])
+
+        #DEBUG - uncomment below for the current solution
+        #print("Current Inverse Solution: " + str(self.indSet))
+        return 0
+
+
+
+    #adds a point to the solution
+    #sample usage z.addPointToSolution(4)
+    #indSet becomes: {4}
+    def addPointToSolution(self, point):
+        #adds point to set
+        self.indSet.add(point)
+        #print("Current Inverse Solution: " + str(self.indSet))
+        return 0
+
+
+    def removePoint(self, point):
+        #print("Removing Point: " + str(point))
+
+        #DEBUG - uncomment below to see graph before removal
+        #print("\nBefore Removal: ")
+        #self.output()
+
+        #for each value that is in the points set...
+        #visit that point node and remove the child which
+        #connects to the passed in point
+        for val in self.bucket[point].children:
+            self.bucket[val].children.remove(point)
+
+        self.bucket[point] = None
+
+        #DEBUG - uncomment below to see graph after removal
+        #print("\nAfter Removal: ")
+        #self.output()
+
+        #print("Removed Point: " + str(point))
+        return 0
+
+    def removeEdge(self, edge):
+        self.removePoint(edge[0])
+        self.removePoint(edge[1])
+        return 0
+
+    def isEdgeLeft(self):
+        for node in self.bucket:
+            if node:
+                if len(node.children) > 0:
+                    return True
+        return False
     #size determines the number of nodes in a given graph
     #connectivity is the average factor of nodes connected - e.g .10 is a node will connect to 10% of the graph.
     #variation is the degree of entropy for connections - e.g. .50 means that the connectivity for a given node will vary within 50% of it's given value
@@ -109,6 +214,19 @@ class graph:
         return 0
 
     def fExport(self):
+        return 0
+
+    def cmdImport(self):
+        self.bucket = []
+        print("Starting command line input mode - input is line by line, per line.")
+        first = input()
+        for i in range (0, int(first)):
+            x = input()
+            x = x.split()
+            x.pop(0)
+            y = {int(j) for j in x}
+            self.bucket.append(node(i, y))
+        self.size = len(self.bucket)
         return 0
 
     def fImport(self, fname):
