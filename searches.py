@@ -18,7 +18,7 @@ def bfs(g, v):
     # v is start node
     visited = set()
     queue = [v]
-    while stack:
+    while queue:
         vertex = queue.pop(0)
         # and just like that, our list works like a queue!
         if vertex not in visited:
